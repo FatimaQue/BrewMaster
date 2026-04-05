@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Hot Chocolate | Premium Blends</title>
+  
+</head>
+<body>
+    <main><router-outlet></router-outlet></main>
+  <div class="product-container">
+    <div class="product-image">
+      <img src="https://images.unsplash.com/photo-1517578239113-b03992dcdd25?q=80&w=1170&auto=format&fit=crop" alt="Hot Chocolate">
+    </div>
+
+    <div class="product-info">
+      <a href="index.html" class="back-link">← Back to Menu</a>
+      <h1>Signature Hot Chocolate</h1>
+      <p class="price">$5.50</p>
+      
+      <p class="description">
+        Experience a velvety-smooth blend of premium 70% dark Belgian chocolate and organic whole milk. Each cup is slow-whisked to create a rich, frothy texture that warms the soul.
+      </p>
+
+      <ul class="features">
+        <li>Ethically sourced cocoa beans</li>
+        <li>Customizable sweetness levels</li>
+        <li>Available in Vegan (Oat/Almond) options</li>
+        <li>Topped with handmade marshmallows</li>
+      </ul>
+
+     <button class="buy-btn" (click)="onBuyNow()">Buy Now</button>
+    </div>
+  </div>
+
+</body>
+</html>

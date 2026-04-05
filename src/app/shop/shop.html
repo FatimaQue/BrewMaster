@@ -1,0 +1,269 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<nav class="navbar">
+  <div class="logo">BrewMaster</div>
+<div class="topnav_menu">
+ <button class="menu-toggle" (click)="toggleMenu($event)">
+    <i class="fa-solid" [ngClass]="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+  </button>
+  <ul class="nav-links" [class.show]="isMenuOpen">
+  <li><a routerLink="/" (click)="isMenuOpen = false">Home</a></li>
+  
+  <li class="dropdown-container">
+    <button class="nav-item-btn" (click)="isDropdownOpen = !isDropdownOpen; $event.stopPropagation()">
+      Menu 
+      <i class="fa-solid fa-chevron-down arrow" [class.rotate]="isDropdownOpen"></i>
+    </button>
+    
+    <ul class="dropdown-menu" [class.open]="isDropdownOpen">
+      <li><a routerLink="/biscoff" >Biscoff</a></li>
+      <li><a routerLink="/caramel" >Caramel</a></li>
+      <li><a routerLink="/chocolate" >Chocolate</a></li>
+    </ul>
+</li>
+
+    <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+    <li><a routerLink="/media" routerLinkActive="active">Media</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+   <li class="nav-item cart-container">
+        <a class="cart-link" (click)="toggleCartDrawer(true)" style="cursor: pointer;">
+          <i class="fa-solid fa-bag-shopping"></i>
+          @if (cartItems().length > 0) {
+            <span class="cart-badge">{{ cartItems().length }}</span>
+          }
+        </a>
+      </li>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input type="text" #searchInput class="search-input" placeholder="Search coffee..." (keyup.enter)="onSearch($event, searchInput.value)">
+        <button class="search-btn" (click)="onSearch($event, searchInput.value)">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </ul>
+  </div>
+</nav>
+
+<!-- CART DRAWER (Place this outside the <nav> to prevent layout shifts) -->
+<div class="drawer-overlay" [class.active]="isCartOpen()" (click)="toggleCartDrawer(false)"></div>
+<aside class="cart-drawer" [class.open]="isCartOpen()">
+  <div class="drawer-header">
+    <h3>Your Shopping Bag ({{ cartItems().length }})</h3>
+    <button class="close-btn" (click)="toggleCartDrawer(false)">&times;</button>
+  </div>
+
+  <div class="drawer-body">
+    @if (cartItems().length === 0) {
+      <div class="empty-cart-msg">
+        <p>Your bag is empty.</p>
+        <button class="btn-continue" (click)="toggleCartDrawer(false)">Continue Shopping</button>
+      </div>
+    } @else {
+      @for (item of cartItems(); track item.id; let i = $index) {
+        <div class="cart-item-row">
+          <div class="item-info">
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-price">${{ item.price }}</span>
+          </div>
+          <button class="remove-btn" (click)="removeFromCart(i)">&times;</button>
+        </div>
+      }
+    }
+  </div>
+
+  @if (cartItems().length > 0) {
+    <div class="drawer-footer">
+      <div class="total-section">
+        <span>Total:</span>
+        <span>${{ calculateTotal() }}</span>
+      </div>
+      <button class="checkout-btn" (click)="proceedToCheckout()">Checkout</button>
+    </div>
+  }
+</aside>
+<section class="categories-section">
+  <div class="categories-header">
+    <h2 class="section-title">TOP CATOGRIES</h2>
+    <p class="section-subtitle">Explore the recent most bought drinks this week</p>
+  </div>
+
+  <div class="scroller-container">
+    
+    <a routerLink="/hot-coco" class="category-link">
+    <div class="category-card">
+      
+      <img 
+        src="https://images.unsplash.com/photo-1517578239113-b03992dcdd25?..." 
+        alt="Hot Chocolate"
+      >
+      
+      <div class="image-overlay">
+        <h3>Hot Chocolate</h3>
+      </div>
+      
+    </div>
+  </a>
+ <a routerLink="/espresso-coffee" class="category-link">
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=500" alt="Espresso">
+      <div class="image-overlay">
+        <h3>Espresso Coffee</h3>
+      </div>
+    </div>
+</a>
+<a routerLink="/mocha-coffee" class="category-link">
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=500" alt="Mocha">
+      <div class="image-overlay">
+        <h3>Mocha Coffee</h3>
+      </div>
+    </div>
+</a>
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1593443320739-77f74939d0da?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Latte">
+      <div class="image-overlay">
+        <h3>Latte Coffee</h3>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500" alt="Arabian Coffee">
+      <div class="image-overlay">
+        <h3>Arabian Coffee</h3>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <img src="https://images.unsplash.com/photo-1626041042756-57215f98ca54?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cappuccino">
+      <div class="image-overlay">
+        <h3>Cappuccino</h3>
+      </div>
+    </div>
+
+  </div>
+  
+</section>
+<section class="shake-section">
+        <h2>Top Milk Shakes</h2>
+        <p>Explore the recent most bought shakes this week. From the crunch of Biscoff to the silky smoothness of salted caramel, indulge in our fan-favorite treats.</p>
+
+        <div class="shake-grid">
+            <article class="shake-card">
+                <div class="shake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=500&auto=format&fit=crop" alt="Biscoff Milkshake">
+                 
+  
+
+
+
+<div class="buy-now-overlay">
+  <button (click)="addToCart('Biscoff Milkshake', 5.99); $event.stopPropagation()"
+    type="button" 
+    class="btn-buy">
+    Buy Now
+  </button>
+</div>
+
+
+
+
+
+
+
+                </div>
+                <div class="shake-info">
+                    <h3>Biscoff Milkshake</h3>
+                </div>
+            </article>
+
+            <article class="shake-card">
+                <div class="shake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1546470427-0d4db154ceb7?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Salted Caramel Milkshake">
+                    <div class="buy-now-overlay">
+  <button (click)="addToCart('Salted Caramel Milkshake', 6.99); $event.stopPropagation()"
+    type="button" 
+    class="btn-buy">
+    Buy Now
+  </button>
+</div>
+                </div>
+                <div class="shake-info">
+                    <h3>Salted Caramel Milkshake</h3>
+                </div>
+            </article>
+
+            <article class="shake-card">
+                <div class="shake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=500&auto=format&fit=crop" alt="Chocolate Milkshake">
+                    <div class="buy-now-overlay">
+                        <a href="#" class="btn-buy">Buy Now</a>
+                    </div>
+                </div>
+                <div class="shake-info">
+                    <h3>Chocolate Milkshake</h3>
+                </div>
+            </article>
+
+            <article class="shake-card">
+                <div class="shake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1653122025451-ec76a73f8a08?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Caramel Milkshake">
+                    <div class="buy-now-overlay">
+                        <a href="#" class="btn-buy">Buy Now</a>
+                    </div>
+                </div>
+                <div class="shake-info">
+                    <h3>Caramel Milkshake</h3>
+                </div>
+            </article>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-column">
+      <h3>Products</h3>
+      <ul>
+        <li><a href="#">Coffees</a></li>
+        <li><a href="#">Milkshakes</a></li>
+        <li><a href="#">Pasteries</a></li>
+        <li><a href="#">Drinks</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#" class="icon facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="#" class="icon instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" class="icon youtube" title="YouTube">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  
+ 
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 BrewMaster. All rights reserved.</p>
+  </div>
+</footer>
+
+
+

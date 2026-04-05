@@ -1,0 +1,1120 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  background-color: #4B2E2B; /* Your requested color */
+  height: 70px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Ensure it stays above the drawer-overlay and other content */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2)
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  color: #f1f1f1;
+}
+
+.nav-links a, .nav-item-btn {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-item-btn:hover {
+  color: #d7ccc8;
+}
+
+ .nav-links #menu-close-button, #menu-open-button {
+    display: none;
+
+}
+
+/* Dropdown specific logic */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #4B2E2B; /* Rich Brown Background */
+  min-width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  overflow: hidden; /* Keeps the hover background inside rounded corners */
+  z-index: 1000;
+  
+  /* Desktop Positioning */
+  position: absolute;
+  top: 110%; /* Slight gap from the navbar */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the menu under the button */
+  border-top: 3px solid #d7ccc8; /* Accent top border */
+}
+
+/* Show class for click logic */
+.dropdown-menu.open {
+  display: block;
+}
+
+/* Individual List Items */
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 15px 20px;
+  color: #ffffff; /* White Text */
+  text-decoration: none;
+  text-align: center; /* Centered Text */
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Hover Effect for individual links */
+.dropdown-menu li a:hover {
+  background-color: #5d3d3a; /* Lighter brown on hover */
+  color: #d7ccc8; /* Cream color text on hover */
+  padding-left: 25px; /* Subtle slide effect */
+}
+
+/* Remove border from last item */
+.dropdown-menu li:last-child a {
+  border-bottom: none;
+}
+.arrow {
+  font-size: 0.7rem;
+  margin-left: 4px;
+}
+
+.active {
+  border-bottom: 2px solid #d7ccc8;
+}
+.hero-section {
+  position: relative;
+  height: 80vh; /* Takes up 80% of the screen height */
+  width: 100%;
+  background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+/* Dark overlay to make white text pop */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* 40% black overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Ensures content is above the overlay */
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+/* Button with your specific hover logic */
+.shop-now-btn {
+  background-color: #4B2E2B; /* Your requested brown color */
+  color: white;
+  border: 2px solid #4B2E2B;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+/* Hover state: Background becomes transparent */
+.shop-now-btn:hover {
+  background-color: transparent;
+  color: #4B2E2B; /* Text changes to brown to stay visible */
+  border-color: #4B2E2B;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+.cart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Space from other nav items */
+}
+
+.cart-icon {
+  color: white; /* Matches your navbar text */
+  font-size: 1.4rem;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.cart-icon:hover {
+  transform: scale(1.1); /* Subtle grow effect on hover */
+  color: #d7ccc8; /* Light cream hover color */
+}
+
+/* The small red/orange notification circle */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #e67e22; /* A warm orange that pops against brown */
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #4B2E2B; /* Creates a clean gap between badge and icon */
+}
+/* Container for the whole section */
+.categories-section {
+  padding: 60px 0;
+  background-color: #4B2E2B;
+  text-align: center;
+}
+
+.scroller-container {
+  display: flex;
+  gap: 25px; /* Slightly wider gap for bigger images */
+  overflow-x: auto;
+  padding: 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* NEW BIGGER SIZING */
+.category-card {
+  position: relative;
+  flex: 0 0 350px; /* Increased from 300px to 350px */
+  height: 500px;    /* Increased from 400px to 500px */
+  border-radius: 20px; /* Rounded corners look better on larger cards */
+  overflow: hidden;
+  scroll-snap-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures no stretching even with larger dimensions */
+  transition: transform 0.5s ease;
+}
+
+/* Hover Effect: Image zooms in slightly */
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  pointer-events: none;
+}
+
+.image-overlay h3 {
+  color: white;
+  font-size: 1.5rem; /* Bigger font for bigger images */
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  padding: 0 20px;
+  margin-top: 30rem;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar for the scroller */
+.scroller-container::-webkit-scrollbar {
+  height: 8px;
+}
+.scroller-container::-webkit-scrollbar-thumb {
+  background: #C08552;
+  border-radius: 10px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle light background */
+  padding: 5px 15px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Glow effect when user clicks/focuses */
+.search-container:focus-within {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #d7ccc8; /* Light cream border */
+  box-shadow: 0 0 8px rgba(215, 204, 200, 0.4);
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 0.9rem;
+  width: 120px; /* Compact width */
+  transition: width 0.4s ease;
+}
+
+/* Expands when typing */
+.search-input:focus {
+  width: 180px;
+}
+
+.search-input::placeholder {
+  color: #d7ccc8;
+  opacity: 0.8;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.search-btn:hover {
+  color: #d7ccc8;
+}
+.categories-header h2 {
+    font-size: 3rem;
+    
+}
+.section-subtitle{
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+    
+}
+.shake-section {
+           
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 0;
+            background: #4B2E2B;
+        }
+
+        .shake-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .shake-section p {
+            font-size: 1.1rem;
+            color: black;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid Layout */
+        .shake-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        /* Individual Card */
+        .shake-card {
+            position: relative;
+            background: #fff;
+            border-radius: 15px;
+            
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .shake-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .shake-image-wrapper {
+            position: relative;
+            height: 320px;
+           
+        }
+
+        .shake-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        /* Buy Now Overlay */
+        .buy-now-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 20; /* Ensure this is higher than the image */
+    pointer-events: auto;
+        }
+
+        .shake-card:hover .buy-now-overlay {
+            opacity: 1;
+        }
+
+        .shake-card:hover img {
+            filter: blur(2px);
+        }
+
+        .btn-buy {
+            background-color: #fff;
+            color: #000;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+    z-index: 21;
+    cursor: pointer;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .shake-info {
+           position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Gradient ensures text is readable on any image */
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 30px;
+            box-sizing: border-box;
+            transition:  0.3s ease;
+            color: #fff;
+        }
+
+        .shake-info h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            
+        }
+        :root {
+            --primary-color: #795548; /* Coffee/Chocolate brown */
+            --accent-color: #d7ccc8;
+            --text-dark: #333;
+        }
+      
+
+
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .shake-section h2 { font-size: 1.8rem; }
+           
+        }
+        .menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.footer {
+  background-color: #3d2523;
+  color: #ffffff;
+  padding: 60px 0 30px; /* Added more breathing room */
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Ensures all columns start at the exact same height */
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 30px;
+}
+
+.footer-column h3 {
+  font-size: 1.1rem;
+  text-transform: uppercase; /* Makes it look cleaner */
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* THE FIX: Remove default list padding */
+.footer-column ul {
+  list-style: none;
+  padding-left: 0; 
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #ffffff;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  padding-top: 5px; /* Aligns top of icons with top of text in other columns */
+}
+
+.social-icons .icon {
+  color: white;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-icons .icon:hover {
+  transform: translateY(-3px);
+}
+
+.facebook:hover { color: #1877f2; }
+.instagram:hover { color: #e4405f; }
+.youtube:hover { color: #ff0000; }
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  font-size: 0.85rem;
+  color: #666;
+}
+.category-link {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;      /* Forces the 'hand' icon to show it is clickable */
+  z-index: 5;
+  /* Hard-locking the width */
+  flex: 0 0 350px;       /* 0 grow, 0 shrink, 350px basis */
+  width: 350px;          
+  min-width: 350px;      
+  max-width: 350px;      
+  
+  /* Hard-locking the height */
+  height: 500px;         
+  
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: center;
+}
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-column h3::after {
+    margin: 8px auto 0;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* --- Responsive Adjustments (Mobile) --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+ .dropdown-menu {
+    position: static; /* Switch from absolute to static for mobile column */
+    width: 100%;
+   transform: none;
+    box-shadow: none;
+    border-radius: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #3d2523;
+  }
+  
+  .dropdown-menu.open {
+    display: flex;
+    flex-direction: column;
+  }
+   .search-container {
+      margin: 20px auto; /* 'auto' on left/right centers the element */
+      width: fit-content; /* Ensures the container doesn't stretch full width */
+    }
+
+.nav-links {
+    /* 1. Position it absolutely so it sits OVER your content */
+    position: absolute;
+    top: 70px; /* Adjust this to match your navbar height exactly */
+    left: 0;
+    width: 100%;
+    background-color: #4B2E2B;
+    
+    /* 2. Layout for the links */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    
+    /* 3. The Animation Logic */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    
+    /* 4. Critical: Ensure it's on top of other elements */
+    z-index: 9999; 
+  }
+
+  /* When Angular adds the .show class */
+  .nav-links.show {
+    max-height: 100vh; /* Allow it to grow to the full screen height if needed */
+    padding: 20px 0;   /* Add some breathing room */
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 1.5rem 0;
+    width: 100%;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+
+.buy-now-drawer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.buy-now-drawer-container.open {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Backdrop */
+.drawer-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Drawer Panel */
+.buy-now-drawer {
+  position: absolute;
+  top: 0;
+  right: -400px; /* Hidden by default */
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.buy-now-drawer-container.open .buy-now-drawer {
+  right: 0;
+}
+
+/* Close Button */
+.drawer-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #666;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.drawer-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Drawer Content */
+.drawer-content h3 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+/* Item Summary */
+.item-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.item-details h4 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.item-details .price {
+  margin: 0;
+  color: #e67e22;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* Quantity Selector */
+.btn-quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+}
+
+.btn-quantity span {
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-quantity span:nth-child(2) {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Checkout Section */
+.checkout-section {
+  margin-top: auto;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.total strong {
+  font-size: 1.3rem;
+  color: #e67e22;
+}
+
+/* Action Buttons */
+.btn-checkout {
+  width: 100%;
+  padding: 0.9rem;
+  background: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 0.75rem;
+}
+
+.btn-checkout:hover {
+  background: #d35400;
+}
+
+.btn-add-to-cart {
+  width: 100%;
+  padding: 0.75rem;
+  background: white;
+  color: #e67e22;
+  border: 2px solid #e67e22;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-add-to-cart:hover {
+  background: #fef5eb;
+}
+
+/* Secure Note */
+.secure-note {
+  text-align: center;
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #eee;
+}
+
+/* Buy Now Button Style */
+.btn-buy {
+  background: #e67e22;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s,  0.2s;
+}
+
+.btn-buy:hover {
+  background: #d35400;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .buy-now-drawer {
+    max-width: 100%;
+  }
+  
+  .item-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+/* Dark background when drawer is open */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9998; /* Just below the drawer */
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Side Drawer Container */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100%;
+  background: #3d2523;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* Highest priority */
+  
+  /* Start hidden to the right */
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+.close-btn {
+  /* Reset default button styles */
+  background: transparent;
+  border: none;
+  position: relative;
+  width: 32px;  /* Control the overall hit area */
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.close-btn::before,
+.close-btn::after {
+  content: '';
+  position: absolute;
+  width: 24px;          /* This is the "length" of the lines */
+  height: 2px;          /* This is the "thickness" of the lines */
+  background-color: #ffffff; /* White color */
+  border-radius: 2px;   /* Softens the edges slightly */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Rotate the two lines to form the X */
+.close-btn::before {
+  transform: rotate(45deg);
+}
+
+.close-btn::after {
+  transform: rotate(-45deg);
+}
+
+/* Optional: Add a subtle hover effect */
+.close-btn:hover::before,
+.close-btn:hover::after {
+  background-color: #cccccc; /* Light gray on hover */
+}
+/* Inner Layout */
+.drawer-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.cart-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #fafafa;
+}
+.btn-continue {
+  /* Colors & Typography */
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  /* Shape & Border */
+  padding: 12px 24px;
+  border: 1px solid #1a1a1a; /* Thin black border for definition */
+  border-radius: 50px;       /* High value creates the pill shape */
+  
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  outline: none;
+}
+
+/* Hover State */
+.btn-continue:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Active/Click State */
+.btn-continue:active {
+  transform: translateY(0);
+}
+.checkout-btn {
+  /* Dimensions */
+  width: 100%;               /* Full width for easier mobile tapping */
+  padding: 16px 32px;
+  margin-top: 10px;
+
+  /* Colors & Typography */
+  background-color: white; /* Black background */
+  color: black;            /* White text */
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;    /* Slightly wider for emphasis */
+
+  /* Shape & Border */
+  border: 2px solid white;
+  border-radius: 50px;       /* Pill shape to match btn-continue */
+  
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  outline: none;
+}
+
+/* Hover State - The "Invert" effect */
+.checkout-btn:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Active/Click State */
+.checkout-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.cart-item-row {
+  display: flex;
+  align-items: center;        /* Vertically centers name and button */
+  justify-content: space-between; /* Pushes content to opposite ends */
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.item-info {
+  display: flex;
+  flex-direction: column;     /* Stack name on top of price */
+  gap: 4px;                   /* Space between name and price */
+}
+
+.item-name {
+  font-weight: 600;
+  color: white;
+}
+
+.item-price {
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* The Remove Button Style */
+.remove-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  
+  /* Ensure it doesn't shrink if the name is long */
+  flex-shrink: 0; 
+}
+
+.remove-btn:hover {
+  color: #ef4444; /* Turns red on hover */
+  transform: scale(1.1);
+}
